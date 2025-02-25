@@ -4,6 +4,8 @@ This guide provides instructions on how to fetch all issues from your LNU GitLab
 
 By getting a full list of issues, you can avoid having to manually check each issue in the GitLab interface. This can be useful to get an overview since some data might not be visible in the default view.
 
+![Output Showcase](assets/output_showcase.png)
+
 ## Prerequisites
 - Python 3 installed.
 - A GitLab **Personal Access Token (PAT)** with `read_api` scope.
