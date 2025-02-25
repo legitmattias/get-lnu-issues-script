@@ -47,7 +47,8 @@ This will return a list of projects in the following format:
 {
   "id": 12345,
   "name": "Assignment Wt1 Oauth",
-  "description": "",
+  "name_with_namespace": "Webben som applikationsplattform (1DV027) / Student Projects / abxxxcd / Assignment Wt1 Oauth",
+  "description": "Some description here...",
   "web_url": "https://gitlab.lnu.se/1dv027/student/abxxxcd/assignment-wt1-oauth"
 }
 ```
