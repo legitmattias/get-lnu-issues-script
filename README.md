@@ -29,6 +29,12 @@ To fetch issues from a project, use the following command:
 python3 get-issues.py
 ```
 
+To save the output to issues.md, use:
+
+```sh
+python3 get-issues.py > issues.md
+```
+
 ## Finding Your Project ID
 
 Your GitLab **Project ID** is a numeric identifier, not the project name.
