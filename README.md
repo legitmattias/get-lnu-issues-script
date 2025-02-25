@@ -61,7 +61,7 @@ curl --header "PRIVATE-TOKEN: YOUR_ACCESS_TOKEN" \
 To format and extract issue titles and descriptions:
 
 ```sh
-jq '.[] | {title: .title, description: .description}' issues.json > formatted_issues.json
+jq '[.[] | {title: .title, description: .description}]' issues.json > formatted_issues.json
 ```
 
 ### Other Available Object Properties
@@ -77,18 +77,4 @@ Each issue object contains multiple properties. Some useful ones:
 - `assignee` → User assigned to the issue (if any)
 - `milestone` → Associated milestone (if any)
 
-To view all properties, run:
-
-```sh
-jq '.' issues.json
-```
-
-## Optional: Convert Issues to Markdown
-If you prefer a markdown file:
-
-```sh
-jq -r '.[] | "## \(.title)\n\n\(.description)\n---"' issues.json > issues.md
-```
-
-This will format all issues neatly into a Markdown file.
 
