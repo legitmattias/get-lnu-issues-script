@@ -1,14 +1,27 @@
 import requests
 
-TOKEN = "YOUR_ACCESS_TOKEN"  # Replace with your actual GitLab token
+TOKEN = "YOUR_ACCESS_TOKEN"  # Replace with your actual GitLab token (PAT)
 PROJECT_ID = "YOUR_PROJECT_ID"  # Replace with the actual project ID
-URL = f"https://gitlab.lnu.se/api/v4/projects/{PROJECT_ID}/issues?sort=asc"
+PROJECT_URL = f"https://gitlab.lnu.se/api/v4/projects/{PROJECT_ID}"
+ISSUES_URL = f"https://gitlab.lnu.se/api/v4/projects/{PROJECT_ID}/issues?sort=asc"
 
 headers = {"PRIVATE-TOKEN": TOKEN}
-response = requests.get(URL, headers=headers)
 
-if response.status_code == 200:
-    issues = response.json()
+# Fetch project details
+project_response = requests.get(PROJECT_URL, headers=headers)
+
+if project_response.status_code == 200:
+    project_name = project_response.json().get("name", "Unknown Project")
+    print(f"# {project_name}\n")
+else:
+    print("Failed to fetch project details:", project_response.status_code)
+    exit(1)
+
+# Fetch issues
+issues_response = requests.get(ISSUES_URL, headers=headers)
+
+if issues_response.status_code == 200:
+    issues = issues_response.json()
     for issue in issues:
         issue_number = issue['iid']
         title = issue['title']
@@ -29,5 +42,4 @@ if response.status_code == 200:
 
         print("\n---\n")
 else:
-    print("Failed to fetch issues:", response.status_code)
-
+    print("Failed to fetch issues:", issues_response.status_code)
