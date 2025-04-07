@@ -1,7 +1,11 @@
 import requests
+from dotenv import load_dotenv
+import os
 
-TOKEN = "YOUR_ACCESS_TOKEN"  # Replace with your actual GitLab token (PAT)
-PROJECT_ID = "YOUR_PROJECT_ID"  # Replace with the actual project ID
+load_dotenv()
+
+TOKEN = os.getenv("GITLAB_TOKEN")  # Loaded from .env
+PROJECT_ID = os.getenv("GITLAB_PROJECT_ID")  # Loaded from .env
 PROJECT_URL = f"https://gitlab.lnu.se/api/v4/projects/{PROJECT_ID}"
 ISSUES_URL = f"https://gitlab.lnu.se/api/v4/projects/{PROJECT_ID}/issues?sort=asc"
 

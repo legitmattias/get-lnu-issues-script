@@ -4,9 +4,10 @@ This guide provides instructions on how to fetch all issues from your LNU GitLab
 
 By getting a full list of issues, you can avoid having to manually check each issue in the GitLab interface. This can be useful to get an overview since some data might not be visible in the default view.
 
-Example output:
-
-![Output Showcase](assets/output_showcase.png)
+> ---
+> **Example output:**
+>
+> ![Output Showcase](assets/output_showcase.png)
 
 ## Prerequisites
 - Python 3 installed.
@@ -21,6 +22,42 @@ Example output:
 4. Copy and save the token securely (you won’t be able to see it again).
 
 **Note:** The `read_api` scope allows access to more than just issues. You can use it to retrieve various project-related information, such as merge requests, pipelines, and more.
+
+## Setting up the Script with `.env` and Virtual Environment
+
+To keep credentials and dependencies clean, this project uses a `.env` file and a local virtual environment.
+
+### 1. Clone and enter the project directory:
+```sh
+git clone <your-repo-url>
+cd <your-project-directory>
+```
+
+### 2. Create a `.env` file from the provided example:
+```sh
+cp .env.example .env
+```
+Edit `.env` with your actual token and project ID:
+```
+GITLAB_TOKEN=your_personal_access_token
+GITLAB_PROJECT_ID=your_project_id
+```
+
+### 3. Create and activate a virtual environment:
+```sh
+python3 -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+```
+
+### 4. Install required dependencies:
+```sh
+pip install -r requirements.txt
+```
+
+> If `requirements.txt` is missing, install manually:
+> ```sh
+> pip install requests python-dotenv
+> ```
 
 ## Running the Script
 To fetch issues from a project, use the following command:
@@ -39,7 +76,16 @@ python3 get-issues.py > issues.md
 
 Your GitLab **Project ID** is a numeric identifier, not the project name.
 
-### Fetch Your Accessible Projects' IDs
+You can get the project ID in different ways, depending on your preference:
+
+### Option 1: Fetch a Particular Project's ID through the Web Interface
+1. Go to your project in GitLab.
+2. Click the three dots on the top right corner.
+3. Copy the project ID
+
+![Copy project ID from GitLab GUI](assets/project_id.png)
+
+### Option 2: Fetch Your Accessible Projects' IDs
 Run the following command to list all accessible project IDs along with their name, description, and web URL:
 
 ```sh
@@ -89,5 +135,3 @@ Each issue object contains multiple properties. Some useful ones:
 - `updated_at` → Date issue was last updated
 - `assignee` → User assigned to the issue (if any)
 - `milestone` → Associated milestone (if any)
-
-
