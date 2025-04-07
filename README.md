@@ -83,7 +83,7 @@ You can get the project ID in different ways, depending on your preference:
 2. Click the three dots on the top right corner.
 3. Copy the project ID
 
-![Copy project ID from GitLab GUI](assets/project_id.png)
+![Copy project ID from GitLab GUI](assets/get_project_id.png)
 
 ### Option 2: Fetch Your Accessible Projects' IDs
 Run the following command to list all accessible project IDs along with their name, description, and web URL:
